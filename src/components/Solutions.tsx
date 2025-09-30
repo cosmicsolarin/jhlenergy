@@ -146,7 +146,7 @@ const Solutions = () => {
                 }}
                 onClick={() => setActiveTab(tab.id)}
                 // UPDATED: Added conditional classes for mobile vs desktop active state
-                className={`relative z-10 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 
+                className={`relative z-10 py-2.5 rounded-full text-sm font-medium transition-colors duration-300
                   ${
                     activeTab === tab.id
                       ? "text-gray-900 sm:text-gray-900 bg-[#facc15] sm:bg-transparent"

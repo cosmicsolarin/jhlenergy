@@ -11,21 +11,21 @@ const testimonials = [
       "We're saving ₹5,000+ every month and tracking everything on the app. Excellent support too!",
     author: "Rohan Sharma",
     title: "Homeowner, Whitefield",
-    avatarUrl: "/avatars/rohan.png", // Placeholder path, add images to public/avatars/
+    avatarUrl: "https://avatar.iran.liara.run/public", // Placeholder path, add images to public/avatars/
   },
   {
     quote:
       "As a business, cutting operational costs is key. JHL's commercial rooftop system was a smart investment. The installation was quick, and the performance has exceeded our expectations.",
     author: "Priya Menon",
     title: "Operations Manager, Peenya",
-    avatarUrl: "/avatars/priya.png",
+    avatarUrl: "https://avatar.iran.liara.run/public",
   },
   {
     quote:
       "We needed a reliable off-grid solution for our farm, and JHL delivered. Their system provides consistent power for our irrigation pumps and facilities. Their service is top-notch.",
     author: "Ankit Patel",
     title: "Farm Owner, near Hosur",
-    avatarUrl: "/avatars/ankit.png",
+    avatarUrl: "https://avatar.iran.liara.run/public",
   },
 ];
 
@@ -45,8 +45,8 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 sm:py-24 text-black bg-green-50">
-      <div className="container mx-auto px-4  p-4">
+    <section className="py-16 sm:py-24 text-black">
+      <div className="container mx-auto px-4 bg-green-50 p-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
           <div className="space-y-6">

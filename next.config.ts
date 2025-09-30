@@ -12,9 +12,9 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "upload.wikimedia.org",
+        hostname: "avatar.iran.liara.run",
         port: "",
-        pathname: "",
+        pathname: "**",
       },
     ],
   },

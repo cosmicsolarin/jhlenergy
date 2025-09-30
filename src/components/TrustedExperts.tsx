@@ -51,7 +51,7 @@ const TrustedExperts = () => {
             />
             {/* UPDATED: Switched from absolute to relative on mobile for proper stacking */}
             <div
-              className="relative -mt-12 mx-auto w-[90%] bg-[#facc15] text-gray-800 p-6 rounded-2xl shadow-xl 
+              className="relative -mt-12 mx-auto w-[90%] bg-[#facc15] text-gray-800 p-6 rounded-2xl shadow-xl
                            lg:absolute lg:-bottom-8 lg:-left-8 lg:mt-0 lg:w-auto lg:max-w-xs"
             >
               <div className="flex flex-col space-y-2 text-center lg:text-left">
