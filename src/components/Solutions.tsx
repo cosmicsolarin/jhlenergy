@@ -30,21 +30,21 @@ const solutionsData = {
       description:
         "Reduce your electricity bills by generating your own power and exporting surplus to the grid.",
       imageUrl: "/products/ongrid.png",
-      pdfUrl: "/brochures/SPS _ On-Grid _ Proposal _ Quotation format 2025.pdf",
+      pdfUrl: "/brochures/SPS_On-Grid_Proposal_Quotation_format_2025.pdf",
     },
     {
       title: "Off-Grid Solar Systems",
       description:
         "Achieve complete energy independence with our reliable standalone power solutions.",
       imageUrl: "/products/offgrid.jpg",
-      pdfUrl: "/brochures/offgrid leaflet Sep24.pdf",
+      pdfUrl: "/brochures/offgrid_leaflet_Sep24.pdf",
     },
     {
       title: "Hybrid Solar Systems",
       description:
         "Combine the savings of on-grid with the security of battery backup for uninterrupted power.",
       imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/JHL Solar Draft.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
   ],
   water: [
@@ -53,21 +53,21 @@ const solutionsData = {
       description:
         "Durable and efficient Flat Plate Collector systems for consistent hot water supply.",
       imageUrl: "/products/waterheater.png",
-      pdfUrl: "/brochures/VG_FPC SERIES_ 2 PAGE LEAFLET_CNM_V7.pdf",
+      pdfUrl: "/brochures/VG_FPC_SERIES_2_PAGE_LEAFLET_CNM_V7.pdf",
     },
     {
       title: "TRU-HOT (ETC) Solar Water Heaters",
       description:
         "High-performance Evacuated Tube Collector technology for faster heating.",
       imageUrl: "/products/truhot.png",
-      pdfUrl: "/brochures/TRU-HOT .pdf",
+      pdfUrl: "/brochures/TRU-HOT.pdf",
     },
     {
       title: "Heat Pump Water Heaters",
       description:
         "Energy-efficient heating using ambient air, available in various capacities for all needs.",
       imageUrl: "/products/hpwh.png",
-      pdfUrl: "/brochures/HPWH_Brochure 06.pdf",
+      pdfUrl: "/brochures/HPWH_Brochure_06.pdf",
     },
   ],
   epc: [
@@ -76,14 +76,14 @@ const solutionsData = {
       description:
         "End-to-end solutions for large-scale solar power generation projects.",
       imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/JHL Solar Draft.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
     {
       title: "Operations & Maintenance (O&M)",
       description:
         "Comprehensive O&M services to ensure your solar assets perform optimally for decades.",
       imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/JHL Solar Draft.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
   ],
 };
