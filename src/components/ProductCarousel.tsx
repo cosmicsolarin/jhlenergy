@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Image, Text } from "@react-three/drei";
+import { Text, useTexture } from "@react-three/drei";
 import { useDrag } from "@use-gesture/react";
 import * as THREE from "three";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -23,9 +23,16 @@ const products: Product[] = [
 
 const CARD_WIDTH = 6;
 const CARD_HEIGHT = 9;
-const GAP = -0.2; // horizontal spacing between cards
+const GAP = -0.2;
 
-function CarouselCard({
+const getCircularDist = (index: number, active: number, total: number) => {
+  let dist = index - active;
+  if (dist > total / 2) dist -= total;
+  if (dist < -total / 2) dist += total;
+  return dist;
+};
+
+const CarouselCard = React.memo(function CarouselCard({
   product,
   index,
   activeIndex,
@@ -39,33 +46,18 @@ function CarouselCard({
   onSelect: (i: number) => void;
 }) {
   const ref = React.useRef<THREE.Group>(null!);
-  const imageRef = React.useRef<any>(null!);
+  const texture = useTexture(product.imageUrl);
 
   useFrame((_, delta) => {
-    if (!ref.current || !imageRef.current) return;
-
+    if (!ref.current) return;
     const smooth = Math.min(1, delta * 6);
 
-    // Compute relative index in circular manner
-    let dist = index - activeIndex;
-    if (dist > total / 2) dist -= total;
-    if (dist < -total / 2) dist += total;
-
-    // Position: cards are on X line
+    const dist = getCircularDist(index, activeIndex, total);
     const targetX = dist * (CARD_WIDTH + GAP);
-
-    // Depth effect: further from center -> pushed back
     const targetZ = -Math.abs(dist) * 1.5;
-
-    // Scale + Opacity falloff
-    const t = Math.abs(dist);
-    const targetScale = Math.max(0.5, 1 - t * 0.15); // shrink gradually
-    const targetOpacity = Math.max(0.2, 1 - t * 0.25);
-
-    // Rotation (optional slight tilt)
     const targetRotY = dist * -0.15;
+    const targetScale = Math.max(0.5, 1 - Math.abs(dist) * 0.15);
 
-    // Apply lerps
     ref.current.position.x = THREE.MathUtils.lerp(
       ref.current.position.x,
       targetX,
@@ -81,26 +73,16 @@ function CarouselCard({
       targetRotY,
       smooth
     );
-
     const s = THREE.MathUtils.lerp(ref.current.scale.x, targetScale, smooth);
     ref.current.scale.set(s, s, s);
-
-    imageRef.current.material.opacity = THREE.MathUtils.lerp(
-      imageRef.current.material.opacity,
-      targetOpacity,
-      smooth
-    );
   });
 
   return (
     <group ref={ref} onClick={() => onSelect(index)}>
-      <Image
-        ref={imageRef}
-        url={product.imageUrl}
-        scale={[CARD_WIDTH, CARD_HEIGHT]}
-        transparent
-        side={THREE.DoubleSide}
-      />
+      <mesh>
+        <planeGeometry args={[CARD_WIDTH, CARD_HEIGHT]} />
+        <meshBasicMaterial map={texture} transparent side={THREE.DoubleSide} />
+      </mesh>
       <Text
         position={[0, -CARD_HEIGHT / 2 - 0.35, 0.1]}
         fontSize={0.28}
@@ -113,7 +95,7 @@ function CarouselCard({
       </Text>
     </group>
   );
-}
+});
 
 export default function ProductCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -122,9 +104,10 @@ export default function ProductCarousel() {
   // Auto-scroll
   useEffect(() => {
     if (isHovered) return;
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % products.length);
-    }, 3000);
+    const interval = setInterval(
+      () => setActiveIndex((prev) => (prev + 1) % products.length),
+      3000
+    );
     return () => clearInterval(interval);
   }, [isHovered]);
 
@@ -139,11 +122,8 @@ export default function ProductCarousel() {
     }) => {
       if (!down) {
         let newIndex = memo;
-        if (Math.abs(vx) > 0.3) {
-          newIndex = memo - Math.sign(dx);
-        } else {
-          newIndex = Math.round(memo - mx / (window.innerWidth * 0.25));
-        }
+        if (Math.abs(vx) > 0.3) newIndex = memo - Math.sign(dx);
+        else newIndex = Math.round(memo - (mx / (CARD_WIDTH + GAP)) * 1.5);
         setActiveIndex(
           ((newIndex % products.length) + products.length) % products.length
         );
@@ -174,29 +154,34 @@ export default function ProductCarousel() {
           className="relative h-[420px] w-full cursor-grab active:cursor-grabbing"
           {...bind()}
         >
-          <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
+          <Canvas camera={{ position: [0, 0, 15], fov: 30 }} dpr={[1, 1.5]}>
             <ambientLight intensity={0.7} />
             <spotLight
               position={[0, 15, 15]}
               angle={0.3}
               penumbra={1}
-              intensity={1.5}
+              intensity={1.2}
             />
 
-            {products.map((p, i) => (
-              <CarouselCard
-                key={i}
-                product={p}
-                index={i}
-                activeIndex={activeIndex}
-                total={products.length}
-                onSelect={setActiveIndex}
-              />
-            ))}
+            {products.map((p, i) => {
+              if (
+                Math.abs(getCircularDist(i, activeIndex, products.length)) > 2
+              )
+                return null;
+              return (
+                <CarouselCard
+                  key={i}
+                  product={p}
+                  index={i}
+                  activeIndex={activeIndex}
+                  total={products.length}
+                  onSelect={setActiveIndex}
+                />
+              );
+            })}
           </Canvas>
         </div>
 
-        {/* Controls */}
         <div className="relative flex justify-center items-center mt-8 gap-4">
           <Button
             onClick={() =>
