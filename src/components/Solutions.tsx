@@ -31,21 +31,21 @@ const solutionsData = {
       description:
         "Reduce your electricity bills by generating your own power and exporting surplus to the grid.",
       imageUrl: "/products/ongrid.png",
-      pdfUrl: "/brochures/on-grid-systems.pdf",
+      pdfUrl: "/brochures/SPS_On-Grid_Proposal_Quotation_format_2025.pdf",
     },
     {
       title: "Off-Grid Solar Systems",
       description:
         "Achieve complete energy independence with our reliable standalone power solutions.",
       imageUrl: "/products/offgrid.jpg",
-      pdfUrl: "/brochures/off-grid-systems.pdf",
+      pdfUrl: "/brochures/offgrid_leaflet_Sep24.pdf",
     },
     {
       title: "Hybrid Solar Systems",
       description:
         "Combine the savings of on-grid with the security of battery backup for uninterrupted power.",
       imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/jhl-company-profile.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
   ],
   water: [
@@ -54,21 +54,21 @@ const solutionsData = {
       description:
         "Durable and efficient Flat Plate Collector systems for consistent hot water supply.",
       imageUrl: "/products/waterheater.png", // New image path
-      pdfUrl: "/brochures/fpc-water-heaters.pdf",
+      pdfUrl: "/brochures/VG_FPC_SERIES_2_PAGE_LEAFLET_CNM_V7.pdf",
     },
     {
       title: "Solar Water Heater (ETC)",
       description:
         "High-performance Evacuated Tube Collector technology for faster heating.",
       imageUrl: "/products/truhot.png", // New image path
-      pdfUrl: "/brochures/etc-water-heaters.pdf",
+      pdfUrl: "/brochures/TRU-HOT.pdf",
     },
     {
       title: "Heat Pump Water Heaters",
       description:
         "Energy-efficient heating using ambient air, available in various capacities for all needs.",
       imageUrl: "/products/hpwh.png",
-      pdfUrl: "/brochures/heat-pump-water-heaters.pdf",
+      pdfUrl: "/brochures/HPWH_Brochure_06.pdf",
     },
   ],
   epc: [
@@ -77,21 +77,21 @@ const solutionsData = {
       description:
         "End-to-end solutions for large-scale solar power generation projects.",
       imageUrl: "/3d/utlility.png",
-      pdfUrl: "/brochures/jhl-company-profile.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
     {
       title: "Operations & Maintenance (O&M)",
       description:
         "Comprehensive O&M services to ensure your solar assets perform optimally for decades.",
       imageUrl: "/3d/maintenance.png",
-      pdfUrl: "/brochures/jhl-company-profile.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
     {
       title: "Annual Maintenance Contract (AMC)",
       description:
         "Ensure your solar investment performs optimally year-round with our comprehensive AMC services for all brands.",
       imageUrl: "/3d/amc.png", // Re-using maintenance image
-      pdfUrl: "/brochures/jhl-company-profile.pdf",
+      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
     },
   ],
 };
