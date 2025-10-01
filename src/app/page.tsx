@@ -2,6 +2,7 @@ import EcoPower from "@/components/EcoPower";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import ProductCarousel from "@/components/ProductCarousel";
 import Solutions from "@/components/Solutions";
 import TechnologyPartners from "@/components/TechnologyPartners";
 import Testimonials from "@/components/Testimonials";
@@ -14,9 +15,10 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      <TrustedExperts />
-      <EcoPower />
+      <ProductCarousel />
       <Solutions />
+      <EcoPower />
+      <TrustedExperts />
       <TechnologyPartners />
       <Values />
       <Testimonials />

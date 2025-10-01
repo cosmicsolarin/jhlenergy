@@ -23,6 +23,7 @@ type TabContentProps = {
   columns?: string;
 };
 
+// UPDATED: Renamed water heaters, added AMC, and prepared for new images.
 const solutionsData = {
   power: [
     {
@@ -30,44 +31,44 @@ const solutionsData = {
       description:
         "Reduce your electricity bills by generating your own power and exporting surplus to the grid.",
       imageUrl: "/products/ongrid.png",
-      pdfUrl: "/brochures/SPS_On-Grid_Proposal_Quotation_format_2025.pdf",
+      pdfUrl: "/brochures/on-grid-systems.pdf",
     },
     {
       title: "Off-Grid Solar Systems",
       description:
         "Achieve complete energy independence with our reliable standalone power solutions.",
       imageUrl: "/products/offgrid.jpg",
-      pdfUrl: "/brochures/offgrid_leaflet_Sep24.pdf",
+      pdfUrl: "/brochures/off-grid-systems.pdf",
     },
     {
       title: "Hybrid Solar Systems",
       description:
         "Combine the savings of on-grid with the security of battery backup for uninterrupted power.",
       imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
+      pdfUrl: "/brochures/jhl-company-profile.pdf",
     },
   ],
   water: [
     {
-      title: "VG FPC Series Solar Water Heaters",
+      title: "Solar Water Heater (FPC)",
       description:
         "Durable and efficient Flat Plate Collector systems for consistent hot water supply.",
-      imageUrl: "/products/waterheater.png",
-      pdfUrl: "/brochures/VG_FPC_SERIES_2_PAGE_LEAFLET_CNM_V7.pdf",
+      imageUrl: "/products/fpc-water-heater.png", // New image path
+      pdfUrl: "/brochures/fpc-water-heaters.pdf",
     },
     {
-      title: "TRU-HOT (ETC) Solar Water Heaters",
+      title: "Solar Water Heater (ETC)",
       description:
         "High-performance Evacuated Tube Collector technology for faster heating.",
-      imageUrl: "/products/truhot.png",
-      pdfUrl: "/brochures/TRU-HOT.pdf",
+      imageUrl: "/products/etc-water-heater.png", // New image path
+      pdfUrl: "/brochures/etc-water-heaters.pdf",
     },
     {
       title: "Heat Pump Water Heaters",
       description:
         "Energy-efficient heating using ambient air, available in various capacities for all needs.",
-      imageUrl: "/products/hpwh.png",
-      pdfUrl: "/brochures/HPWH_Brochure_06.pdf",
+      imageUrl: "/products/heat-pump.png",
+      pdfUrl: "/brochures/heat-pump-water-heaters.pdf",
     },
   ],
   epc: [
@@ -75,20 +76,29 @@ const solutionsData = {
       title: "Utility-Scale Solar Plants",
       description:
         "End-to-end solutions for large-scale solar power generation projects.",
-      imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
+      imageUrl: "/products/utility-scale.png",
+      pdfUrl: "/brochures/jhl-company-profile.pdf",
     },
     {
       title: "Operations & Maintenance (O&M)",
       description:
         "Comprehensive O&M services to ensure your solar assets perform optimally for decades.",
-      imageUrl: "/products/hybrid.png",
-      pdfUrl: "/brochures/JHL_Solar_Draft.pdf",
+      imageUrl: "/products/maintenance.png",
+      pdfUrl: "/brochures/jhl-company-profile.pdf",
+    },
+    {
+      title: "Annual Maintenance Contract (AMC)",
+      description:
+        "Ensure your solar investment performs optimally year-round with our comprehensive AMC services for all brands.",
+      imageUrl: "/products/maintenance.png", // Re-using maintenance image
+      pdfUrl: "/brochures/jhl-company-profile.pdf",
     },
   ],
 };
 
+// UPDATED: Added "All" tab
 const tabs = [
+  { id: "all", label: "All Products & Services" },
   { id: "power", label: "Solar Power Systems" },
   { id: "water", label: "Water Heating" },
   { id: "epc", label: "EPC & Services" },
@@ -99,10 +109,17 @@ const Solutions = () => {
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
-  // Using useCallback to memoize the function
+  const allProducts = [
+    ...solutionsData.power,
+    ...solutionsData.water,
+    ...solutionsData.epc,
+  ];
+
   const updateIndicator = useCallback(() => {
-    // Only run this logic on screens wider than the 'sm' breakpoint (640px)
-    if (window.innerWidth < 640) return;
+    if (typeof window !== "undefined" && window.innerWidth < 640) {
+      setIndicatorStyle({}); // Reset style on mobile
+      return;
+    }
 
     const activeTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
     const activeTabElem = tabsRef.current[activeTabIndex];
@@ -116,7 +133,6 @@ const Solutions = () => {
 
   useEffect(() => {
     updateIndicator();
-    // Add a resize listener to recalculate position on window resize
     window.addEventListener("resize", updateIndicator);
     return () => {
       window.removeEventListener("resize", updateIndicator);
@@ -136,8 +152,9 @@ const Solutions = () => {
           </p>
         </div>
 
-        <div className="relative w-full max-w-2xl mx-auto bg-gray-100 rounded-xl sm:rounded-full p-1.5 mb-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3">
+        {/* UPDATED: Tabs container to accommodate 4 tabs */}
+        <div className="relative w-full max-w-3xl mx-auto bg-gray-100 rounded-xl sm:rounded-full p-1.5 mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4">
             {tabs.map((tab, index) => (
               <button
                 key={tab.id}
@@ -145,8 +162,7 @@ const Solutions = () => {
                   tabsRef.current[index] = el;
                 }}
                 onClick={() => setActiveTab(tab.id)}
-                // UPDATED: Added conditional classes for mobile vs desktop active state
-                className={`relative z-10 py-2.5 rounded-full text-sm font-medium transition-colors duration-300
+                className={`relative z-10 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 
                   ${
                     activeTab === tab.id
                       ? "text-gray-900 sm:text-gray-900 bg-[#facc15] sm:bg-transparent"
@@ -157,19 +173,18 @@ const Solutions = () => {
               </button>
             ))}
           </div>
-          {/* UPDATED: Hide the sliding indicator on small screens */}
           <div
             className="absolute top-1.5 h-[calc(100%-0.75rem)] bg-[#facc15] rounded-full shadow-md transition-all duration-300 ease-in-out hidden sm:block"
             style={indicatorStyle}
           />
         </div>
 
+        {/* UPDATED: Content rendering to include the "all" tab */}
         <div>
+          {activeTab === "all" && <TabContent data={allProducts} />}
           {activeTab === "power" && <TabContent data={solutionsData.power} />}
           {activeTab === "water" && <TabContent data={solutionsData.water} />}
-          {activeTab === "epc" && (
-            <TabContent data={solutionsData.epc} columns="lg:grid-cols-2" />
-          )}
+          {activeTab === "epc" && <TabContent data={solutionsData.epc} />}
         </div>
       </div>
     </section>
@@ -178,7 +193,7 @@ const Solutions = () => {
 
 const TabContent = ({ data, columns = "lg:grid-cols-3" }: TabContentProps) => (
   <div
-    className={`grid grid-cols-1 md:grid-cols-2 ${columns} gap-8 max-w-4xl mx-auto`}
+    className={`grid grid-cols-1 md:grid-cols-2 ${columns} gap-8 max-w-6xl mx-auto`}
   >
     {data.map((item) => (
       <SolutionCard key={item.title} {...item} />
@@ -205,7 +220,7 @@ const SolutionCard = ({
             alt={title}
             layout="fill"
             objectFit="cover"
-            className="transition-transform duration-300 group-hover:scale-105 object-bottom"
+            className="transition-transform duration-300 group-hover:scale-105 object-center"
           />
         </div>
       </CardHeader>
@@ -219,7 +234,7 @@ const SolutionCard = ({
         <a href={pdfUrl} download={downloadFilename} className="w-full">
           <Button
             variant="outline"
-            className="w-full border-gray-300 hover:bg-gray-100"
+            className="w-full border-gray-300 hover:bg-[#facc15]"
           >
             Download Brochure
           </Button>
