@@ -10,19 +10,19 @@ import { Button } from "@/components/ui/button";
 type Product = { title: string; imageUrl: string };
 
 const products: Product[] = [
-  { title: "On-Grid Systems", imageUrl: "/products/ongrid.png" },
-  { title: "Off-Grid Systems", imageUrl: "/products/offgrid.jpg" },
-  { title: "Hybrid Systems", imageUrl: "/products/hybrid.png" },
-  { title: "Solar Water Heater (FPC)", imageUrl: "/products/waterheater.png" },
-  { title: "Solar Water Heater (ETC)", imageUrl: "/products/waterheater.png" },
-  { title: "Heat Pump Water Heaters", imageUrl: "/products/hpwh.png" },
-  { title: "Utility-Scale Plants", imageUrl: "/products/truhot.png" },
-  { title: "O & M", imageUrl: "/products/hybrid.png" },
-  { title: "Annual Maintenance (AMC)", imageUrl: "/products/hybrid.png" },
+  { title: "On-Grid Systems", imageUrl: "/3d/ongrid.png" },
+  { title: "Off-Grid Systems", imageUrl: "/3d/offgrid.png" },
+  { title: "Hybrid Systems", imageUrl: "/3d/hybrid.png" },
+  { title: "Solar Water Heater (FPC)", imageUrl: "/3d/fpc.png" },
+  { title: "Solar Water Heater (ETC)", imageUrl: "/3d/etc.png" },
+  { title: "Heat Pump Water Heaters", imageUrl: "/3d/hpwh.png" },
+  { title: "Utility-Scale Plants", imageUrl: "/3d/utlility.png" },
+  { title: "O & M", imageUrl: "/3d/maintenance.png" },
+  { title: "Annual Maintenance (AMC)", imageUrl: "/3d/amc.png" },
 ];
 
 const CARD_WIDTH = 6;
-const CARD_HEIGHT = 9;
+const CARD_HEIGHT = 7;
 const GAP = -0.2;
 
 const getCircularDist = (index: number, active: number, total: number) => {

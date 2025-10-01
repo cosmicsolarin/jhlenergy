@@ -53,21 +53,21 @@ const solutionsData = {
       title: "Solar Water Heater (FPC)",
       description:
         "Durable and efficient Flat Plate Collector systems for consistent hot water supply.",
-      imageUrl: "/products/fpc-water-heater.png", // New image path
+      imageUrl: "/products/waterheater.png", // New image path
       pdfUrl: "/brochures/fpc-water-heaters.pdf",
     },
     {
       title: "Solar Water Heater (ETC)",
       description:
         "High-performance Evacuated Tube Collector technology for faster heating.",
-      imageUrl: "/products/etc-water-heater.png", // New image path
+      imageUrl: "/products/truhot.png", // New image path
       pdfUrl: "/brochures/etc-water-heaters.pdf",
     },
     {
       title: "Heat Pump Water Heaters",
       description:
         "Energy-efficient heating using ambient air, available in various capacities for all needs.",
-      imageUrl: "/products/heat-pump.png",
+      imageUrl: "/products/hpwh.png",
       pdfUrl: "/brochures/heat-pump-water-heaters.pdf",
     },
   ],
@@ -76,21 +76,21 @@ const solutionsData = {
       title: "Utility-Scale Solar Plants",
       description:
         "End-to-end solutions for large-scale solar power generation projects.",
-      imageUrl: "/products/utility-scale.png",
+      imageUrl: "/3d/utlility.png",
       pdfUrl: "/brochures/jhl-company-profile.pdf",
     },
     {
       title: "Operations & Maintenance (O&M)",
       description:
         "Comprehensive O&M services to ensure your solar assets perform optimally for decades.",
-      imageUrl: "/products/maintenance.png",
+      imageUrl: "/3d/maintenance.png",
       pdfUrl: "/brochures/jhl-company-profile.pdf",
     },
     {
       title: "Annual Maintenance Contract (AMC)",
       description:
         "Ensure your solar investment performs optimally year-round with our comprehensive AMC services for all brands.",
-      imageUrl: "/products/maintenance.png", // Re-using maintenance image
+      imageUrl: "/3d/amc.png", // Re-using maintenance image
       pdfUrl: "/brochures/jhl-company-profile.pdf",
     },
   ],
@@ -220,7 +220,7 @@ const SolutionCard = ({
             alt={title}
             layout="fill"
             objectFit="cover"
-            className="transition-transform duration-300 group-hover:scale-105 object-center"
+            className="transition-transform duration-300 group-hover:scale-105 object-bottom"
           />
         </div>
       </CardHeader>
