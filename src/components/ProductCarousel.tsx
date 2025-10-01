@@ -191,7 +191,7 @@ export default function ProductCarousel() {
             }
             variant="outline"
             size="icon"
-            className="bg-white/10 border-white/20 hover:bg-white/20 text-white rounded-full"
+            className="bg-white border-white hover:bg-white/20 text-gray-900 rounded-full"
             aria-label="Previous product"
           >
             <ChevronLeft />
@@ -202,7 +202,7 @@ export default function ProductCarousel() {
             }
             variant="outline"
             size="icon"
-            className="bg-white/10 border-white/20 hover:bg-white/20 text-white rounded-full"
+            className="bg-white border-white hover:bg-white/20 text-gray-900 rounded-full"
             aria-label="Next product"
           >
             <ChevronRight />
